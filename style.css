@@ -1,0 +1,231 @@
+/* Resetare stiluri de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Stil pentru body */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: #dbcb9a;
+    position: relative; /* Necesită pentru poziționarea absolută a altor elemente */
+}
+
+/* Stil pentru div-ul .content */
+.content {
+    text-align: center; /* Asigură alinierea centrală a textului */
+    transition: opacity 3.8s ease-out; /* Animația de dispariție */
+}
+
+/* Stil pentru eticheta de verificare */
+label {
+    display: inline-block; /* Asigură că label-ul apare corect */
+    margin-top: 20px; /* Spațiu între text și label */
+    position: relative;
+    width: 160px;
+    height: 80px;
+    cursor: pointer;
+    top: -135px; /* Ajustează această valoare pentru a muta h1 mai sus */
+    left: 0px;
+}
+
+/* Ascunde checkbox-ul inițial */
+label input {
+    position: absolute;
+    z-index: 1;
+    opacity: 0; /* Ascunde checkbox-ul original */
+}
+
+/* Stil pentru bara de switch */
+label span {
+    display: block; /* Transformă span-ul în bloc pentru a ocupa tot spațiul */
+    width: 100%;
+    height: 100%;
+    background: #fe0000;
+    border-radius: 80px;
+    transition: 0.5s;
+    box-shadow: 0 15px 25px #fe000066;
+}
+
+/* Schimbare stil la activare */
+label input:checked + span {
+    background: #05be05;
+    box-shadow: 0 15px 25px #05be0566;
+}
+
+/* Stil pentru cercul din switch */
+label span i {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 72px;
+    height: 72px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+/* Mută cercul la activare */
+label input:checked + span i {
+    left: 84px;
+}
+
+/* Stil pentru puncte din interiorul switch-ului */
+label span i::before {
+    content: '';
+    position: absolute;
+    top: 22px;
+    left: 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fe0000;
+    box-shadow: 35px 0 0 #fe0000;
+    transition: 0.5s;
+}
+
+/* Schimbare stil puncte la activare */
+label input:checked + span i::before {
+    background: #05be05;
+    box-shadow: 31px 0 0 #05be05;
+}
+
+/* Stil pentru bara din interiorul switch-ului */
+label span i::after {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: calc(50% - 15px);
+    width: 30px;
+    height: 6px;
+    border-radius: 6px;
+    background: #fe0000;
+    transition: 0.5s;
+}
+
+/* Ajustare bară la activare */
+label input:checked + span i::after {
+    height: 15px;
+    border-radius: 0;
+    bottom: 12px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #05be05;
+}
+
+/* Stil pentru titluri */
+h1 {
+    font-size: 60px;
+    position: relative; /* Permite mutarea elementului în raport cu poziția sa inițială */
+    top: -135px; /* Ajustează această valoare pentru a muta h1 mai sus */
+    text-align: center;
+    color: #333;
+    left: 40px;
+}
+
+/* Stil pentru h2 */
+h2 {
+    font-size: 110px;
+    left: 40px;
+    position: relative; /* Permite mutarea elementului în raport cu poziția sa inițială */
+    top: -170px; /* Ajustează această valoare pentru a muta h2 mai sus */
+    text-align: center;
+    color: #fe0000; /* Roșu */
+}
+
+/* Stil pentru overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0;
+    transition: opacity 3.8s ease-out; /* Durata tranziției pentru overlay */
+    display: none; /* Inițial ascuns */
+}
+
+/* Animația de fade-in pentru overlay */
+.overlay.fade-in {
+    display: block;
+}
+
+/* Stil pentru animația de fade-out a conținutului */
+.content.fade-out {
+    opacity: 0;
+}
+
+/* Stil pentru loading screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asigură că este deasupra altor elemente */
+    flex-direction: column; /* Aranjează elementele pe verticală */
+}
+
+/* Stil pentru spinner */
+.spinner {
+    border: 16px dotted; /* Fundalul spinner-ului */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 4s linear infinite;
+}
+
+/* Animația de rotație pentru spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Stil pentru mesajul de încărcare */
+.loading-message {
+    position: absolute;
+    bottom: 600px; /* Ajustează poziția de jos a mesajului */
+    color: #4a4a4a; /* Culoarea textului */
+    opacity: 0.8;
+    font-size: 70px; /* Dimensiunea textului */
+    text-align: center;
+    font-weight: bold;
+    width: 100%; /* Lățimea textului să fie aceeași cu a ecranului de încărcare */
+    padding: 0 20px; /* Spațiu pe laterale */
+}
+.loading-message.hidden {
+    display: none; /* Ascunde mesajul de încărcare */
+}
+
+/* Stil pentru fața zâmbitoare */
+.smiley-face {
+    display: none; /* Inițial ascuns */
+    position: absolute;
+    top: 50%; /* Centrăm pe verticală */
+    left: 50%; /* Centrăm pe orizontală */
+    transform: translate(-50%, -50%); /* Ajustăm centrul */
+    font-size: 300px; /* Dimensiunea faței zâmbitoare */
+    color: #f8c291; /* Culoarea faței zâmbitoare */
+}
+
+/* Stil pentru mesajul lung */
+.long-message {
+    display: none; /* Inițial ascuns */
+    position: absolute;
+    bottom: 100px; /* Poziția de jos a mesajului */
+    color: #4a4a4a; /* Culoarea textului */
+    font-size: 20px; /* Dimensiunea textului */
+    text-align: center;
+    width: 100%; /* Lățimea textului să fie aceeași cu a ecranului de încărcare */
+    padding: 0 20px; /* Spațiu pe laterale */
+    font-weight: bold;
+}

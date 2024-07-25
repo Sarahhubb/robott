@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pentru tine orice</title>
+    <meta name="description" content="Uneori ai nevoie de o pauză.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="sorry">
+            <h2>Ne pare rău...</h2>
+            <h1>Această pagină necesită o verificare suplimentară</h1>
+            <h1>Confirmă că nu ești robot</h1>
+        </div>
+        <label>
+            <input type="checkbox" id="verify-checkbox">
+            <span>
+                <i></i>
+            </span>
+        </label>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="loading-screen" id="loading-screen" style="display: none;">
+        <div class="spinner"></div>
+        <div class="loading-message">Pagina se încarcă, vă rugăm așteptați...</div>
+        <div class="smiley-face">🤗</div>
+        <div class="long-message">
+            Din fericire nu ai cu adevărat nevoie de o confirmare. Nu ești robot, ești cât de uman se poate, de la emoții la acțiuni. Este firesc și în regulă să mai greșești uneori sau să mai ai nevoie de o pauză, te rog încearcă să nu mai fii atât de dur cu tine. Sunt mândră de tine pentru omul care ești zi de zi și nu sunt singura. Sper că am reușit să pun măcar un mic zâmbet pe față daca nu să mai destresez.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('verify-checkbox');
+            const content = document.querySelector('.content');
+            const overlay = document.getElementById('overlay');
+            const loadingScreen = document.getElementById('loading-screen');
+            const smileyFace = document.querySelector('.smiley-face');
+            const longMessage = document.querySelector('.long-message');
+            const loadingMessage = document.querySelector('.loading-message');
+        
+            checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            content.classList.add('fade-out');
+            overlay.classList.add('fade-in');
+
+            setTimeout(() => {
+                content.style.display = 'none';
+                loadingScreen.style.display = 'flex';
+
+                // Ascunde mesajul de încărcare și loading screen-ul după 2 secunde
+                setTimeout(() => {
+                    loadingMessage.classList.add('hidden'); // Ascunde mesajul de încărcare
+                    loadingScreen.classList.add('hidden'); // Ascunde loading screen-ul printr-o clasă CSS
+
+                    // Așteaptă 2 secunde pentru a permite dispariția ecranului de încărcare
+                    setTimeout(() => {
+                        smileyFace.style.display = 'block';
+                        longMessage.style.display = 'block';
+                    }, 0); // 2 secunde pentru a permite dispariția ecranului de încărcare
+                }, 3000); // 2 secunde pentru a ascunde mesajul de încărcare
+            }, 3800); // Timpul trebuie să fie același cu durata tranziției de fade-out
+        }
+    });
+});
+        </script>
+        
+</body>
+</html>
